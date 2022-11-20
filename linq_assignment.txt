@@ -1,0 +1,275 @@
+/* Linq Assignment */
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Linq_Example_Task
+{
+    internal class Employee
+    {
+        public int EmployeeID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Title { get; set; }
+        public DateTime DOB { get; set; }
+        public DateTime DOJ { get; set; }
+        public string City { get; set; }
+
+
+    }
+}
+
+
+
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Linq_Example_Task
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            IList<Employee> EmployeeList = new List<Employee>() {
+        new Employee() { EmployeeID = 1001, FirstName = "Malcolm",LastName="Daruwalla",Title="Manager",DOB=new DateTime(1984, 11, 16),DOJ=new DateTime(2011,06,08),City
+        ="Mumbai"} ,
+         new Employee() { EmployeeID = 1002, FirstName = "Asdin",LastName="Dhalla",Title="AsstManager",DOB=new DateTime(1984, 08, 20),DOJ=new DateTime(2012,07,07),City
+        ="Mumbai"} ,
+          new Employee() { EmployeeID = 1003, FirstName = "Madhavi",LastName="Oza",Title="Consultant",DOB=new DateTime(1987, 11, 14),DOJ=new DateTime(2015,04,12),City
+        ="Pune"} ,
+           new Employee() { EmployeeID = 1004, FirstName = "Saba",LastName="Shaikh",Title="SE",DOB=new DateTime(1990, 06, 03),DOJ=new DateTime(2016,02,02),City
+        ="Pune"} ,
+            new Employee() { EmployeeID = 1005, FirstName = "Nazia",LastName="Shaikh",Title="SE",DOB=new DateTime(1991, 03, 08),DOJ=new DateTime(2016,02,02),City
+        ="Mumbai"} ,
+             new Employee() { EmployeeID = 1006, FirstName = "Amit",LastName="Pathak",Title="Consultant",DOB=new DateTime(1989, 11, 07),DOJ=new DateTime(2014,08,08),City
+        ="Chennai"} ,
+              new Employee() { EmployeeID = 1007, FirstName = "Vijay",LastName="Natrajan",Title="Consultant",DOB=new DateTime(1989, 12, 02),DOJ=new DateTime(2015,06,01),City
+        ="Mumbai"} ,
+               new Employee() { EmployeeID = 1008, FirstName = "Rahul",LastName="Dubey",Title="Associate",DOB=new DateTime(1993, 11, 11),DOJ=new DateTime(2014,11,06),City
+        ="Chennai"} ,
+                new Employee() { EmployeeID = 1009, FirstName = "Suresh",LastName="Mistry",Title="Associate",DOB=new DateTime(1992, 08, 12),DOJ=new DateTime(2014,12,03),City
+        ="Chennai"} ,
+                 new Employee() { EmployeeID = 1010, FirstName = "Sumit",LastName="Shah",Title="Manager",DOB=new DateTime(1991, 04, 12),DOJ=new DateTime(2016,01,02),City
+        ="Pune"} 
+    };
+
+            Console.WriteLine("Enter a,b,c,d,e,f,g,h,i,j,k,l,m,n,and o for your required result \n" +
+                "a. Display detail of all the employee. \n" +
+                "b. Display details of all the employee whose location is not Mumbai.\n" +
+                "c. Display details of all the employee whose title is AsstManager.\n" +
+                "d. Display details of all the employee whose last name start with 'S'. \n" +
+                "e. Display a list of all the employee who have joined before 1/1/2015. \n" +
+                "f. Display a list of all the employee whose date of birth is after 1/1/1990. \n" +
+                "g. Display a list of all the employee whose designation is Consultant and Associate. \n"+
+                "h. Display total number of employees. \n"+
+                "i. Display total number of employees belonging to \"Chennai\". \n"+
+                "j. Display highest employee id from the list. \n"+
+                "k. Display total number of employee who have joined after 2015/01/01. \n"+
+                "l. Display total number of employee whose designation is not \"Associate\". \n"+
+                "m. Display total number of employee based on City. \n"+
+                "n. Display total number of employee based on city and title. \n"+
+                "o. Display total number of employee who is youngest in the list. \n\n"+
+                "Enter your choice : -"
+                 );
+
+            char c;
+                  c = Console.ReadLine()[0];
+            switch(c)
+                {
+                case 'a':
+                    var Emp_Details=from emp in EmployeeList select emp;
+                   
+                        Console.WriteLine("EmployeeID" + " "+ "FirstName"+" "+ "LastName"+"   "+ "Title"+"              "+"DOB"+"                   "+ "DOJ"+"                    "+"City");
+                        
+                    
+                    foreach (Employee emp in Emp_Details)
+                    {
+                        Console.Write(emp.EmployeeID + "       ");
+                        Console.Write(emp.FirstName + "    ");
+                        Console.Write(emp.LastName + "     ");
+                        Console.Write(emp.Title + "       ");
+                        Console.Write(emp.DOB + "   ");
+                        Console.Write(emp.DOJ + "         ");
+                        Console.Write(emp.City + " ");
+                        Console.WriteLine();
+
+                    }
+                    break;
+                    case 'b':
+                     Emp_Details = from emp in EmployeeList where emp.City!="Mumbai" select emp  ;
+                    Console.WriteLine("EmployeeID" + " " + "FirstName" + " " + "LastName" + "   " + "Title" + "              " + "DOB" + "                   " + "DOJ" + "                    " + "City");
+
+
+                    foreach (Employee emp in Emp_Details)
+                    {
+                        Console.Write(emp.EmployeeID + "       ");
+                        Console.Write(emp.FirstName + "    ");
+                        Console.Write(emp.LastName + "     ");
+                        Console.Write(emp.Title + "       ");
+                        Console.Write(emp.DOB + "   ");
+                        Console.Write(emp.DOJ + "         ");
+                        Console.Write(emp.City + " ");
+                        Console.WriteLine();
+
+                    }
+                    break;
+                case 'c':
+                    Emp_Details = from emp in EmployeeList where emp.Title == "AsstManager" select emp;
+                    Console.WriteLine("EmployeeID" + " " + "FirstName" + " " + "LastName" + "   " + "Title" + "              " + "DOB" + "                   " + "DOJ" + "                    " + "City");
+
+
+                    foreach (Employee emp in Emp_Details)
+                    {
+                        Console.Write(emp.EmployeeID + "       ");
+                        Console.Write(emp.FirstName + "    ");
+                        Console.Write(emp.LastName + "     ");
+                        Console.Write(emp.Title + "       ");
+                        Console.Write(emp.DOB + "   ");
+                        Console.Write(emp.DOJ + "         ");
+                        Console.Write(emp.City + " ");
+                        Console.WriteLine();
+
+                    }
+                    break;
+                case 'd':
+                    Emp_Details = from emp in EmployeeList where emp.LastName.StartsWith("S") select emp;
+                    
+                    Console.WriteLine("EmployeeID" + " " + "FirstName" + " " + "LastName" + "   " + "Title" + "              " + "DOB" + "                   " + "DOJ" + "                    " + "City");
+
+
+                    foreach (Employee emp in Emp_Details)
+                    {
+                        Console.Write(emp.EmployeeID + "       ");
+                        Console.Write(emp.FirstName + "    ");
+                        Console.Write(emp.LastName + "     ");
+                        Console.Write(emp.Title + "       ");
+                        Console.Write(emp.DOB + "   ");
+                        Console.Write(emp.DOJ + "         ");
+                        Console.Write(emp.City + " ");
+                        Console.WriteLine();
+
+                    }
+                    break;
+
+                case 'e':
+                    Emp_Details = from emp in EmployeeList where emp.DOJ< new DateTime(2015,01,01) select emp;
+
+                    Console.WriteLine("EmployeeID" + " " + "FirstName" + " " + "LastName" + "   " + "Title" + "              " + "DOB" + "                   " + "DOJ" + "                    " + "City");
+
+
+                    foreach (Employee emp in Emp_Details)
+                    {
+                        Console.Write(emp.EmployeeID + "       ");
+                        Console.Write(emp.FirstName + "    ");
+                        Console.Write(emp.LastName + "     ");
+                        Console.Write(emp.Title + "       ");
+                        Console.Write(emp.DOB + "   ");
+                        Console.Write(emp.DOJ + "         ");
+                        Console.Write(emp.City + " ");
+                        Console.WriteLine();
+
+                    }
+                    break;
+
+                case 'f':
+                    Emp_Details = from emp in EmployeeList where new DateTime(1990,01,01)< emp.DOB select emp;
+
+                    Console.WriteLine("EmployeeID" + " " + "FirstName" + " " + "LastName" + "   " + "Title" + "              " + "DOB" + "                   " + "DOJ" + "                    " + "City");
+
+
+                    foreach (Employee emp in Emp_Details)
+                    {
+                        Console.Write(emp.EmployeeID + "       ");
+                        Console.Write(emp.FirstName + "    ");
+                        Console.Write(emp.LastName + "     ");
+                        Console.Write(emp.Title + "       ");
+                        Console.Write(emp.DOB + "   ");
+                        Console.Write(emp.DOJ + "         ");
+                        Console.Write(emp.City + " ");
+                        Console.WriteLine();
+
+                    }
+                    break;
+
+                case 'g':
+                    Emp_Details = from emp in EmployeeList where emp.Title== "Consultant" || emp.Title == "Associate" select emp;
+
+                    Console.WriteLine("EmployeeID" + " " + "FirstName" + " " + "LastName" + "   " + "Title" + "              " + "DOB" + "                   " + "DOJ" + "                    " + "City");
+
+
+                    foreach (Employee emp in Emp_Details)
+                    {
+                        Console.Write(emp.EmployeeID + "       ");
+                        Console.Write(emp.FirstName + "    ");
+                        Console.Write(emp.LastName + "     ");
+                        Console.Write(emp.Title + "       ");
+                        Console.Write(emp.DOB + "   ");
+                        Console.Write(emp.DOJ + "         ");
+                        Console.Write(emp.City + " ");
+                        Console.WriteLine();
+
+                    }
+                    break;
+
+                case 'h':
+                    int total_employee= (from emp in EmployeeList select emp).Count();
+                    Console.WriteLine(total_employee);
+                   
+                    break;
+
+                case 'i':
+                     total_employee = (from emp in EmployeeList where emp.City== "Chennai" select emp).Count();
+                    Console.WriteLine(total_employee);
+
+                    break;
+
+                case 'j':
+                    var empId = from emp in EmployeeList select emp.EmployeeID;
+                    Console.WriteLine(empId.Max());
+
+                    break;
+                case 'k':
+                    total_employee = (from emp in EmployeeList where new DateTime(2015, 01, 01) > emp.DOJ select emp).Count();
+                    
+                    Console.WriteLine(total_employee);
+                    
+                    break;
+                case 'l':
+                    total_employee = (from emp in EmployeeList where  emp.Title != "Associate" select emp).Count();
+
+                    Console.WriteLine(total_employee);
+                    
+                    break;
+                case 'm':
+                    total_employee = (from emp in EmployeeList where new DateTime(2015, 01, 01) > emp.DOJ select emp).Count();
+
+                    Console.WriteLine(total_employee);
+                    
+                    break;
+                case 'n':
+                    total_employee = (from emp in EmployeeList where new DateTime(2015, 01, 01) > emp.DOJ select emp).Count();
+
+                    Console.WriteLine(total_employee);
+                    
+                    break;
+                case 'o':
+                    var emp_date = from emp in EmployeeList select emp.DOB;
+                    
+                    Console.WriteLine(emp_date);
+                    
+                    break;
+
+            }
+            Console.ReadLine();
+        }
+    }
+}
